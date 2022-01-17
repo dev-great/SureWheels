@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong> The reservation was successful!</strong> Reservation successful! Check details Reservation date - car model The moderator will confirm the booking within 12 hours of booking.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <img src="/media/{{ Rent.car_id.pic_url }}" alt="Responsive image" class="img-fluid">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-dark">
+                       
+                        <tr>
+                            <td>registration year</td>
+                            <td>{{ Rent.car_id.years }}</td>
+                        </tr>
+                        <tr>
+                            <td>gear</td>
+                            <td>{{ Rent.car_id.get_type_gear_display }}</td>
+                        </tr>
+                        <tr>
+                            <td>car type</td>
+                            <td>{{ Rent.car_id.get_category_display }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table table-dark">
+                        <tr>
+                            <td>color</td>
+                            <td>{{ Rent.car_id.color }}</td>
+                        </tr>
+                        <tr>
+                            <td>number of seats</td>
+                            <td>{{ Rent.car_id.number_seat }}</td>
+                        </tr>
+                        <tr>
+                            <td>number of doors</td>
+                            <td>{{ Rent.car_id.number_door }}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-auto">
+           
+            <div class="row">
+                <h1> booking status : {{ Rent.get_status_display }}</h1>
+            </div>
+            <div class="row text-center">
+                
+                <div class="col">
+                        <p>Select date/time to pick up the car <br>{{Rent.start_date}}</p>
+
+                </div>
+                <div class="col">
+                    <p>Select the date/time to return the car. <br> {{Rent.end_date}} </p>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <table class='table table-stripe'>
+                    <tr>
+                        <td>booking name</td>
+                        <td>{{ Rent.customer_id.first_name }} {{ Rent.customer_id.last_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>booking time</td>
+                        <td>{{ Rent.create_time }}</td>
+                    </tr>
+                    <tr>
+                        <td>discount</td>
+                        <td> promotion{{Rent.promotion.name}} </td>
+                    </tr>
+                    <tr>
+                        
+                        <td>total price</td>
+                        <td>₦{{ Rent.total_price | intcomma  }}.00</td>
+                    </tr>
+                    
+                    <tr class="table-warning">
+                        <td>
+                            <p>Deposit for damage insurance</p>
+                            <p style="font-size: x-small;">Pay when picking up the car and get it back at the end of the rental.</p>
+                        </td>
+                        <td>₦3,000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a type="submit" class="btn btn-secondary btn-lg btn-block" href="{% url 'homepage' %}">Proceed to payment</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

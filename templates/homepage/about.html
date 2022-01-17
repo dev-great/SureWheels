@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <h1 class="display-4 text-uppercase text-center mb-5">Welcome To <span class="text-primary">SURE WHEELS</span></h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <img class="w-75 mb-4" src="{% static 'img/about.png'%}" alt="">
+                    <p style="  text-align:     justify ;">SURE-WHEELS NIGERIA LIMITED is a private Limited Liability Company incorporated in the year 2018 with head office located in Abuja. The need to take adequate care of the long list of client spread across Nigeria and beyond necessitates the emergence of this company. SURE-WHEELS have displayed lots of competence in the areas of: Car Rental/Hire, Long/Short term Car Lease, Airport Pickup/Drops, Hourly/ Daily Car Rental Service, School Bus Runs/Staff Bus Shuttle, Protocol/Escort Services, Cleaning and Maintenance of office building. In the field of Transportation industry( Car Rental), SURE- WHEELS has earned an excellent reputation for expertise, efficiency, innovation and time/within budget delivery of service and periodic training exercises for both staff and drivers.</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-light p-4 mb-4" style="height: 150px;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary ml-n4 mr-4" style="width: 100px; height: 100px;">
+                            <i class="fa fa-2x fa-pump-soap text-secondary"></i>
+                        </div>
+                        <h4 class="text-uppercase m-0">Services Cleaning and Maintenance</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-secondary p-4 mb-4" style="height: 150px;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary ml-n4 mr-4" style="width: 100px; height: 100px;">
+                            <i class="fa fa-2x fa-car text-secondary"></i>
+                        </div>
+                        <h4 class="text-light text-uppercase m-0">Car Rentals and Hire</h4>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-2">
+                    <div class="d-flex align-items-center bg-light p-4 mb-4" style="height: 150px;">
+                        <div class="d-flex align-items-center justify-content-center flex-shrink-0 bg-primary ml-n4 mr-4" style="width: 100px; height: 100px;">
+                            <i class="fa fa-2x fa-plane text-secondary"></i>
+                        </div>
+                        <h4 class="text-uppercase m-0">Airport Pickup and Drops</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Banner Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="bg-banner py-5 px-4 text-center">
+                <div class="py-5">
+                    <h1 class="display-1 text-uppercase text-primary mb-4">20% OFF</h1>
+                    <h1 class="text-uppercase text-light mb-4">Special Offer For New Members</h1>
+                    <p class="mb-4">Only for Sunday from 1st Jan to 30th Jan 2045</p>
+                    <a class="btn btn-primary mt-2 py-3 px-5" href="">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <!-- Banner Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row mx-0">
+                <div class="col-lg-6 px-0">
+                    <div class="px-5 d-flex align-items-center justify-content-between" style="height: 350px;background-color: black ;">
+                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="{% static 'img/banner-left.png'%}" alt="">
+                        <div class="text-right">
+                            <h3 class="text-uppercase text-light mb-3">Want to be driver?</h3>
+                            <p class="mb-4">Register today with Sure Wheels today to be a driver.</p>
+                            <a class="btn btn-primary py-2 px-4" href="">Start Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 px-0">
+                    <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
+                        <div class="text-left">
+                            <h3 class="text-uppercase text-light mb-3">Looking for a car?</h3>
+                            <p class="mb-4">You can rent from our exclusive collection of cars.</p>
+                            <a class="btn btn-primary py-2 px-4" href="">Start Now</a>
+                        </div>
+                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="{% static 'img/banner-right.png'%}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner End -->
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+            <h1 class="display-4 text-uppercase text-center mb-5">Our Client's Say</h1>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="testimonial-item d-flex flex-column justify-content-center px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                         <h1 class="img-fluid ml-n4 fa fa-user" alt=""></h1>
+                        <h1 class="display-2 text-white m-0 fa fa-quote-right"></h1>
+                    </div>
+                    <h4 class="text-uppercase mb-2">Henry Musa</h4>
+                    <i class="mb-2">Abuja</i>
+                    <p class="m-0">Thanks for the delightful hire car we had, it was immaculate when we picked it up from Abuja, was extremely frugal with fuel, and was easy to drive on those beautiful Abuja roads.</p>
+                </div>
+                <div class="testimonial-item d-flex flex-column justify-content-center px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                         <h1 class="img-fluid ml-n4 fa fa-user" alt=""></h1>
+                        <h1 class="display-2 text-white m-0 fa fa-quote-right"></h1>
+                    </div>
+                    <h4 class="text-uppercase mb-2">Yemi Ogundare</h4>
+                    <i class="mb-2">Ibadan</i>
+                    <p class="m-0">I just wanted to let you know that the team operating out of Abuja provided an excellent and efficient service. Based on such a pleasant experience I will be recommending your car hire to others.</p>
+                </div>
+                <div class="testimonial-item d-flex flex-column justify-content-center px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                         <h1 class="img-fluid ml-n4 fa fa-user" alt=""></h1>
+                        <h1 class="display-2 text-white m-0 fa fa-quote-right"></h1>
+                    </div>
+                    <h4 class="text-uppercase mb-2">Suleman Abubakar</h4>
+                    <i class="mb-2">Maiduguri</i>
+                    <p class="m-0">No hidden fees or tricky small print conditions. I will recommend Sure-Wheels to everyone I know and use you again in the future.</p>
+                </div>
+                <div class="testimonial-item d-flex flex-column justify-content-center px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h1 class="img-fluid ml-n4 fa fa-user" alt=""></h1>
+                        <h1 class="display-2 text-white m-0 fa fa-quote-right"></h1>
+                    </div>
+                    <h4 class="text-uppercase mb-2">Yemi Ogundare</h4>
+                    <i class="mb-2">Ibadan</i>
+                    <p class="m-0">I just wanted to let you know that the team operating out of Abuja provided an excellent and efficient service. Based on such a pleasant experience I will be recommending your car hire to others.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+    
+    {% endblock %}
