@@ -4,6 +4,7 @@ Brotli==1.0.9
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.10
+pypaystack
 cssselect2==0.4.1
 dj-database-url==0.5.0
 Django==4.0.1
@@ -23,7 +24,6 @@ Pillow==9.0.0
 psycopg2==2.9.3
 pycparser==2.21
 pydyf==0.1.2
-pypaystack==1.24
 PyPDF2==1.26.0
 pyphen==0.12.0
 python-bidi==0.4.2
