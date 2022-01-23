@@ -5,7 +5,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.urls import reverse
 import secrets
-from .paystack import PayStack
 
 from django.utils import timezone
 # Create your models here.
