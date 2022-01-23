@@ -1,127 +1,28 @@
-{% extends "base.html" %}
 {% load static %}
 {% load humanize %}
 {% block content %}
 
-		<!-- Invoice styling -->
-		<style>
-			body {
-				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-				text-align: center;
-				color: #777;
-			}
-
-			body h1 {
-				font-weight: 300;
-				margin-bottom: 0px;
-				padding-bottom: 0px;
-				color: #000;
-			}
-
-			body h3 {
-				font-weight: 300;
-				margin-top: 10px;
-				margin-bottom: 20px;
-				font-style: italic;
-				color: #555;
-			}
-
-			body a {
-				color: #06f;
-			}
-
-			.invoice-box {
-				max-width: 800px;
-				margin: auto;
-				padding: 30px;
-				border: 1px solid #eee;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-				font-size: 16px;
-				line-height: 24px;
-				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-				color: #555;
-			}
-
-			.invoice-box table {
-				width: 100%;
-				line-height: inherit;
-				text-align: left;
-				border-collapse: collapse;
-			}
-
-			.invoice-box table td {
-				padding: 5px;
-				vertical-align: top;
-			}
-
-			.invoice-box table tr td:nth-child(2) {
-				text-align: right;
-			}
-
-			.invoice-box table tr.top table td {
-				padding-bottom: 20px;
-			}
-
-			.invoice-box table tr.top table td.title {
-				font-size: 45px;
-				line-height: 45px;
-				color: #333;
-			}
-
-			.invoice-box table tr.information table td {
-				padding-bottom: 40px;
-			}
-
-			.invoice-box table tr.heading td {
-				background: #eee;
-				border-bottom: 1px solid #ddd;
-				font-weight: bold;
-			}
-
-			.invoice-box table tr.details td {
-				padding-bottom: 20px;
-			}
-
-			.invoice-box table tr.item td {
-				border-bottom: 1px solid #eee;
-			}
-
-			.invoice-box table tr.item.last td {
-				border-bottom: none;
-			}
-
-			.invoice-box table tr.total td:nth-child(2) {
-				border-top: 2px solid #eee;
-				font-weight: bold;
-			}
-
-			@media only screen and (max-width: 600px) {
-				.invoice-box table tr.top table td {
-					width: 100%;
-					display: block;
-					text-align: center;
-				}
-
-				.invoice-box table tr.information table td {
-					width: 100%;
-					display: block;
-					text-align: center;
-				}
-			}
-		</style>
-
-		<h1>Sure Wheels Nigerian Limited </h1>
+		<h1>SURE WHEELS NIGERIAN LIMITED </h1>
 		<h3>Here is a breakdown of your booking with Sure Wheels .</h3>
-		You can download your invoice by clicking download <a href="http://opensource.org/licenses/MIT" target="_blank" class="btn btn-primary ">Download</a>.<br /><br /><br />
+		You can download your invoice by clicking download <a href="#" target="_blank" class="btn btn-primary ">Download</a>.<br /><br /><br />
+		<style>
+table, th, td {
+  border: 1px solid transparent;
+}
+
+  tr {
+  padding: 5px;
+}
+</style>
 
 		<div class="invoice-box">
-			<table>
+			<table >
 				<tr class="top">
 					<td colspan="2">
 						<table>
 							<tr>
 								<td class="title">
-									<img src="{% static 'img/logo.png'%}" alt="Company logo" style="width: 100%; max-width: 300px" />
+									<img src="data:image/png;base64,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" alt="Company logo" style="width: 50%; max-width: 150px" />
 								</td>
 
 								<td>
@@ -153,59 +54,101 @@
 						</table>
 					</td>
 				</tr>
+					
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
+					<td style="font-size:13px; font-weight:bold;">PAYMENT METHOD</td>
 
-				<tr class="heading">
-					<td>Payment Method</td>
-
-					<td>Check #</td>
+					<td style="font-size:13px; font-weight:bold;">CHECK #</td>
+				</tr>
+			</table>
+		</td>
 				</tr>
 
-				<tr class="details">
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
 					<td>Point</td>
 
 					<td>Paystack</td>
 				</tr>
-
-				<tr class="heading">
-					<td>Item</td>
-
-					<td>Price</td>
+			</table>
+		</td>
 				</tr>
 
-				<tr class="item">
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
+					<td style="font-size:13px; font-weight:bold;">DETAILES</td>
+
+					<td style="font-size:13px; font-weight:bold;">SPECIFICATIONS</td>
+				</tr>
+			</table>
+		</td>
+				</tr>
+
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
 					<td>Car:</td>
 
 					<td>{{Rent.car_id.name}}</td>
 				</tr>
+			</table>
+		</td>
+				</tr>
 
-				<tr class="item">
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
 					<td>pick up date</td>
 
 					<td>{{Rent.start_date}}</td>
 				</tr>
+			</table>
+		</td>
+				</tr>
 
-				<tr class="item">
+				<tr >
+					<td colspan="2">
+						<table>
+							<tr>
 					<td>return date</td>
 
 					<td>{{Rent.end_date}}</td>
 				</tr>
+			</table>
+		</td>
+				</tr>
 
-				<tr class="item last">
+				<tr>
+					<td colspan="2">
+						<table>
+							<tr>
 					<td>Car useage:</td>
 
 					<td>{{ Rent.car_id.get_category_display }}</td>
 				</tr>
+			</table>
+		</td>
+				</tr>
 
-				<tr class="total">
+				<tr style="font-size:13px; font-weight:bold;">
 					<td></td>
 
-					<td>Total: ₦{{Rent.total_price|intcomma }}.00</td>
+					<td>TOTAL: NGN {{Rent.total_price|intcomma }}.00</td>
 				</tr>
 			</table>
+		</center>
 		</div>
 
 {% endblock %}
 
-{% block footer %}
 
-{% endblock %}
+

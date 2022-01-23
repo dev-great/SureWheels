@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-6">
                 <img src="/media/{{ car.pic_url }}" alt="Responsive image" style="width: 100%;" class="mt-5">
-                <a type="button" class="btn btn-success btn-sm" style='margin: 111px;' href="{% url 'car_dashboard' %}">กลับไปหน้ารายการรถ</a>
+                <a type="button" class="btn btn-success btn-sm" style='margin: 111px;' href="{% url 'car_dashboard' %}">back to car list</a>
         </div>
         <div class="col-6">
             <table class="table table-borderless mt-4">
@@ -17,36 +17,36 @@
 
                     </tr>
                     <tr>
-                        <td>รถปี</td>
+                        <td>Car year:</td>
                         <td>{{car.years}}</td>
 
                     </tr>
                     <tr>
-                        <td>สี</td>
+                        <td>Color:</td>
                         <td>{{car.color}}</td>
                     </tr>
                     <tr>
-                        <td>ประเภทเกียร์</td>
+                        <td>Gear type:</td>
                         <td>{{ car.get_type_gear_display }}</td>
                     </tr>
                     <tr>
-                        <td>รถประเภท</td>
+                        <td>Car useage:</td>
                         <td>{{ car.get_category_display}}</td>
                     </tr>
                     <tr>
-                        <td>จำนวนที่นั่ง</td>
+                        <td>Number of seats:</td>
                         <td>{{ car.number_seat}}</td>
                     </tr>
                     <tr>
-                        <td>จำนวนประตู</td>
-                        <td>{{ car.number_door}}</td>
+                        <td>Reason of use:</td>
+                        <td>{{ car.reason}}</td>
                     </tr>
                     <tr>
-                        <td>ราคาต่อวัน</td>
+                        <td>Car price:</td>
                         <td>{{ car.price}}</td>
                     </tr>
                     <tr>
-                        <td>วันที่เเก้ไขล่าสุด</td>
+                        <td>Last revision date</td>
                         <td>{{ car.update_time}}</td>
                     </tr>
                 </tbody>

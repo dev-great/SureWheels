@@ -12,7 +12,6 @@ urlpatterns = [
     path('home-car-hidden/<int:id_car>/', views.home_car_hide, name='home_car_hide'),
     path('available/<int:id_rent>/', views.available, name='available'),
     path('notavailable/<int:id_rent>/', views.notavailable, name='notavailable'),
-
     path('', views.car_dashboard, name='car_dashboard'),
 
 

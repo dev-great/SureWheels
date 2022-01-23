@@ -18,6 +18,7 @@ from django.conf.global_settings import LOGIN_URL
 
 # Build paths inside the project like this: BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-5x)$b4(rc)f*4)6$-x@mw)#jvb90m!@x2o(dh2+-4l=8v(-uo$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','surewheels.herokuapp.com','wwww.surewheels.herokuapp.com','surewheelsng.com','www.surewheelsng.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
 
 
 # Application definition
@@ -46,8 +47,15 @@ INSTALLED_APPS = [
     'dashboard',
     'details',
     'account',
+    'crispy_forms',
+    'paystack',
 
 ]
+
+PAYSTACK_PUBLIC_KEY= "pk_live_e960c926b60d34258bc11f5ad616cbd1b516d0bd",
+PAYSTACK_SECRET_KEY= "sk_live_ed037d255313d510169957a70e947239c06abbd0",
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,3 +164,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+if ENVIRONMENT == 'production':
+    DEBUG = False
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_REDIRECT_EXEMPT = []
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -51,6 +51,9 @@
                                             data-target="#exampleModalCenter{{rent.id}}" style="color: aliceblue;">
                                             details
                                         </a>
+                                        <a href="{% url 'invoice' id_rent=rent.id %}" type="button" class="btn btn-primary  btn-sm mr-2">
+                                            invoice
+                                        </a>
 
                                         <div class="modal fade" id="exampleModalCenter{{rent.id}}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -105,12 +108,12 @@
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>total price</td>
-                                                                                <td>₦{{rent.total_price|intcomma }}.00</td>
+                                                                                <td>₦{{rent.total_price|intcomma }}</td>
                                                                               </tr>
                                                                               <tr>
                                                                                 <td>car information</td>
-                                                                                <td>{{ rent.car_id.name }}({{rent.car_id.years}}) สี {{rent.car_id.color}}
-                                                                                    {{ rent.car_id.get_type_gear_display }} ประเภท {{ rent.car_id.get_category_display}}
+                                                                                <td>{{ rent.car_id.name }}({{rent.car_id.years}}) Color: {{rent.car_id.color}}
+                                                                                    {{ rent.car_id.get_type_gear_display }} Car usage: {{ rent.car_id.get_category_display}}
                                                                                 </td>
                                                                               </tr>
                                                                             

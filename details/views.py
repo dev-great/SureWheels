@@ -1,17 +1,27 @@
 
 from datetime import datetime
 from os.path import isdir
-
+from pypaystack import Transaction, Customer, Plan
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-
-from management.models import Car, Promo, Rent
-
+from django.conf import settings
+from management.models import Car, Promo, Rent, Payment
+from django.views.generic import ListView, DetailView, View
+from django.http import JsonResponse
+import json
+from django.http import HttpResponse
+from django.views.generic import View
+ 
+#importing get_template from loader
+from django.template.loader import get_template
+ 
+#import render_to_pdf from util.py 
+from .utils import render_to_pdf
+from django.http import HttpResponse
 
 # Create your views here.
 @login_required
-@permission_required('management.add_rent')
 def booking(request, id_car):
     context = {}
     car = Car.objects.get(pk=id_car)
@@ -118,7 +128,7 @@ def booking(request, id_car):
     context['car'] = car
 
     return render(request, 'detail/detail.html', context=context)
-
+@login_required
 def detail(request, id_car):
     context = {}
     car = Car.objects.get(pk=id_car)
@@ -126,18 +136,31 @@ def detail(request, id_car):
     return render(request, 'detail/detail.html', context=context)
 
 @login_required
-@permission_required('management.view_rent')
 def confirm(request, id_rent):
     context={}
     rent_order = Rent.objects.get(pk=id_rent)
-    context['Rent'] = rent_order
-    return render(request, 'detail/confirm.html', context=context)
+    return render(request, 'detail/confirm.html', {'Rent': rent_order, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY} )
 
 @login_required
-@permission_required('management.add_rent')
 def reservation_list(request):
     context = {}
     user_id = request.user.id
     Rents = Rent.objects.filter(customer_id__id__contains=user_id).order_by("-id")
     context['Rents'] = Rents
     return render(request, 'detail/reservation_list.html', context=context)
+
+
+def verify_payment(request, id):
+    transaction = Transaction(authorization_key="sk_live_ed037d255313d510169957a70e947239c06abbd0")
+    response  = transaction.verify(id)
+    data = JsonResponse(response, safe=False)
+    return data
+
+@login_required
+def invoice(request , id_rent):
+    context = {}
+    rent_order = Rent.objects.get(pk=id_rent)
+    context['Rent'] = rent_order
+    pdf = render_to_pdf('detail/invoice.html',context_dict=context)
+    return HttpResponse(pdf, content_type='application/pdf')
+

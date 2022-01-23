@@ -7,15 +7,15 @@
     <title>Sure-Wheels Nigerian limited</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta property="og:title" content="SURE WHEELS">
-    <meta property="og:image" content="{% static 'img/favicon.ico'%}">
-    <meta property="og:url" content="surewheelsng.com">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
     <meta property="og:description" content="">
     <meta name="twitter:title" content="">
     <meta name="twitter:image" content="">
     <meta name="twitter:url" content="">
     <meta name="twitter:card" content="">
     <meta name="description" content="Sure wheels Nigeria Ltd ">
-    <meta name="keywords" content="rental companies Nigeria, Car rentals Nigeria, Car rentals, rentals, Manasseh Saaku, Surewheelsnig.com, Sure-wheels, Sure wheels, gream house, car Nigeria, surewheelsng">
+    <meta name="keywords" content="rental companies Nigeria, Car rentals Nigeria, Car rentals, rentals, Manasseh Saaku, Surewheels.org, Sure-wheels, Sure wheels, gream house, car Nigeria">
     <meta name="author" content="Manasseh Saaku">
    
 
@@ -99,11 +99,7 @@
                                  {% if perms.management.change_rent %} 
                                 <a href="{% url 'dashboard' %}" class="dropdown-item">Dashboard</a>
                                  {% endif %}
-
-                                 {% if perms.management.add_rent %}
                                 <a href="{% url 'reservation_list' %}" class="dropdown-item">My Reservation</a>
-                                 {% endif %}
-
                                  <a href="{% url 'ChangePassword' %}" class="dropdown-item">Reset Password</a>
                                  <a href="{% url 'my_logout' %}" class="dropdown-item">Logout</a>
 

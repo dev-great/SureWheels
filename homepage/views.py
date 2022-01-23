@@ -71,9 +71,7 @@ def add_edit_car(request):
 @permission_required('management.change_car')
 def change_car(request):
     return redirect('homepage')
-
 @login_required
-@permission_required('management.change_car')
 def car_detail(request, id_car):
     context = {}
     car = Car.objects.get(pk=id_car)

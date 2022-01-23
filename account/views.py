@@ -63,10 +63,8 @@ def createAccount(request):
                 try:
                     user = User.objects.create_user(username, email, password)
                     print('reach')
-                    Groups = Group.objects.get(name='register_user')
                     user.first_name = fname
                     user.last_name = lname
-                    user.groups.add(Groups)
                     user.save()
                     success = 'Your Account '+username+' : Success Sign up' 
                     request.session['success'] = success

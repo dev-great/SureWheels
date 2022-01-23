@@ -2,7 +2,6 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-
 <div class="container">
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong> The reservation was successful!</strong> Reservation successful! Check details Reservation date - car model The moderator will confirm the booking within 12 hours of booking.
@@ -20,15 +19,15 @@
                     <table class="table table-dark">
                        
                         <tr>
-                            <td>registration year</td>
+                            <td>Registration year:</td>
                             <td>{{ Rent.car_id.years }}</td>
                         </tr>
                         <tr>
-                            <td>gear</td>
+                            <td>Gear type:</td>
                             <td>{{ Rent.car_id.get_type_gear_display }}</td>
                         </tr>
                         <tr>
-                            <td>car type</td>
+                            <td>Car useage:</td>
                             <td>{{ Rent.car_id.get_category_display }}</td>
                         </tr>
 
@@ -37,15 +36,19 @@
                 <div class="col">
                     <table class="table table-dark">
                         <tr>
-                            <td>color</td>
+                            <td>Color:</td>
                             <td>{{ Rent.car_id.color }}</td>
                         </tr>
                         <tr>
-                            <td>number of seats</td>
+                            <td>Number of seats:</td>
                             <td>{{ Rent.car_id.number_seat }}</td>
                         </tr>
                         <tr>
-                            <td>number of doors</td>
+                            <td>Reason of use:</td>
+                            <td>{{ Rent.car_id.reason}}</td>
+                        </tr>
+                        <tr>
+                            <td>Number of doors:</td>
                             <td>{{ Rent.car_id.number_door }}</td>
                         </tr>
 
@@ -87,7 +90,7 @@
                     <tr>
                         
                         <td>total price</td>
-                        <td>₦{{ Rent.total_price | intcomma  }}.00</td>
+                        <td>₦{{ Rent.total_price | intcomma  }}</td>
                     </tr>
                     
                     <tr class="table-warning">
@@ -99,7 +102,8 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a type="submit" class="btn btn-secondary btn-lg btn-block" href="{% url 'homepage' %}">Proceed to payment</a>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" value="Pay" onclick="payWithPaystack()"> Pay</button>
+              
                         </td>
                     </tr>
                 </table>
@@ -108,9 +112,55 @@
     </form>
     </div>
 </div>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+<script>
+    function payWithPaystack() {
+        var handler = PaystackPop.setup({
+        key: 'pk_live_e960c926b60d34258bc11f5ad616cbd1b516d0bd',
+        email: '{{user.email}}',
+        amount: {{ Rent.total_price}}*100,  
+
+        metadata: {
+         custom_fields: [
+            {
+                display_name: "Samuel Dave",
+                variable_name: "mobile_number",
+                value: "+2348012345678"
+            }
+         ]
+        },
+            callback: function (response) {
+               
+               var refrenceid = response.reference;
+
+               $.ajax({
+                type:"GET",
+                url: "/invoice/"+refrenceid,
+                beforeSend: function(){
+                    console.log("sending request");
+                    $(".alert").text("sending request");
+                },
+                success: function(response){
+                    if(response[3].status=="success"){
+                        $(".alert").removeClass("alert-warning");
+                        $(".alert").addClass("alert-success");
+                        $(".alert").text("Transaction verified");
+                        console.log("Transaction verified");
+                        $("form").trigger("reset");
+
+                    }else{
+                        $(".alert").text("Transaction reference not found");
+                    }
+                }
 
 
-
-
-
+               })
+            }
+               
+            });
+            handler.openIframe();
+          
+       
+    }
+</script>
 {% endblock %}

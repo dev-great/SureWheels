@@ -20,7 +20,7 @@
     </div>
     {% endif %}
 
-    {% if perms.managecar.add_rent %}
+    
     <div class="row d-flex justify-content-center">
         <div class="row">
             <div class="col-lg-6">
@@ -40,20 +40,20 @@
                         <table class="table table-borderless">
                             <tbody>
                                 <tr>
-                                    <td>car year</td>
+                                    <td>Car year:</td>
                                     <td>{{car.years}}</td>
     
                                 </tr>
                                 <tr>
-                                    <td>Car color</td>
+                                    <td>Car color:</td>
                                     <td>{{car.color}}</td>
                                 </tr>
                                 <tr>
-                                    <td>gear type</td>
+                                    <td>Gear type:</td>
                                     <td>{{ car.get_type_gear_display }}</td>
                                 </tr>
                                 <tr>
-                                    <td>car type</td>
+                                    <td>Car usage:</td>
                                     <td>{{ car.get_category_display}}</td>
                                 </tr>
                             </tbody>
@@ -66,16 +66,20 @@
                             <tbody>
                               
                                 <tr>
-                                    <td>number of seats</td>
+                                    <td>Number of seats:</td>
                                     <td>{{ car.number_seat}}</td>
                                 </tr>
                                 <tr>
-                                    <td>number of doors</td>
+                                    <td>Number of doors:</td>
                                     <td>{{ car.number_door}}</td>
                                 </tr>
                                 <tr>
-                                    <td>price per day</td>
-                                    <td>₦{{ car.price|intcomma }}.00</td>
+                                    <td>Reason of use:</td>
+                                    <td>{{ car.reason}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Price per day:</td>
+                                    <td>₦{{ car.price|intcomma }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -120,7 +124,7 @@
                                     {% if amount_day and not not_accept %}
                                     <tr>
                                         <td>rent for {{ amount_day }} day</td>
-                                        <td>{{ price | intcomma  }}.00</td>
+                                        <td>{{ price | intcomma  }}</td>
                                     </tr>
                                     {% endif %}
                                     <tr>
@@ -174,53 +178,6 @@
                     </div>
                 </div>
             </form>
-            {% else %}
-            <div class="row ">
-                <div class="col-6">
-                        <img src="/media/{{ car.pic_url }}" alt="Responsive image" style="width: 100%;" class="mt-5 mb-4">
-                        
-                        <a type="button" class="btn btn-outline-success  d-flex justify-content-center" href="{% url 'booking' id_car=car.id %}">Sign In to reserve this car</a>
-                </div>
-                <div class="col-6">
-                    <table class="table table-borderless mt-4">
-                        <tbody>
-                            <tr>
-                                <td colspan="2"><h1>{{car.name }}</h1></td>
-        
-                            </tr>
-                            <tr>
-                                <td>car year</td>
-                                <td>{{car.years}}</td>
-        
-                            </tr>
-                            <tr>
-                                <td>car color</td>
-                                <td>{{car.color}}</td>
-                            </tr>
-                            <tr>
-                                <td>gear type</td>
-                                <td>{{ car.get_type_gear_display }}</td>
-                            </tr>
-                            <tr>
-                                <td>car type</td>
-                                <td>{{ car.get_category_display}}</td>
-                            </tr>
-                            <tr>
-                                <td>number of seats</td>
-                                <td>{{ car.number_seat}}</td>
-                            </tr>
-                            <tr>
-                                <td>number of doors</td>
-                                <td>{{ car.number_door}}</td>
-                            </tr>
-                            <tr>
-                                <td>price per day</td>
-                                <td>₦{{ car.price|intcomma }}.00</td>
-                            </tr>
-                        </tbody>
-                      </table>
-
-            {% endif %}
         </div>
     </div>
 

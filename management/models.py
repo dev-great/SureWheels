@@ -3,23 +3,17 @@ from django.db.models.fields import CharField, DateTimeField
 from django.forms.fields import ImageField
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.urls import reverse
+import secrets
+from .paystack import PayStack
 
-
+from django.utils import timezone
 # Create your models here.
 class Car(models.Model):
 
     CATEGORY_CAR = (
-        ('SUV','Sport Utility Vehicle'),
-        ('PPV', 'Pick-Up Passenger Vehicle'),
-        ('MPV','Multi Purpose Vehicle'),
-        ('ECO','Eco Car'),
-        ('HEV','Hybrid Electric Vehicles'),
-        ('EV', 'Electric Vehicles'),
-        ('PU', 'Pick-Up Truck'),
-        ('VAN', 'Van Car'),
-        ('SED', 'Sedan'),
-        ('SUP', 'Supercar'),
-        ('COP','Coupe')
+        ('CITY','Within the city'),
+        ('OUT_CITY', 'Out of city'),
     )
 
     COLOR = (
@@ -47,11 +41,17 @@ class Car(models.Model):
         ('NO_AVAILABLE','Unavailable'),
         ('HIDE','Hide')
     )
+    REASON = (
+        ('AIRPORT_TRANSFER','Airport pickup and dropoff'),
+        ('RENT_LEASE','Rent and Lease'),
+        ('ESCORT','Escort and protocol service')
+    )
 
     name = models.CharField(max_length=60)
     years = models.CharField(max_length=4)
     color = models.CharField(max_length=20, choices=COLOR)
-    category = models.CharField(max_length=3, choices=CATEGORY_CAR)
+    reason = models.CharField(max_length=20, choices=REASON)
+    category = models.CharField(max_length=10, choices=CATEGORY_CAR)
     type_gear = models.CharField(max_length=10, choices=TYPE_GEAR)
     number_seat = models.SmallIntegerField()
     number_door = models.SmallIntegerField()
@@ -83,6 +83,7 @@ class Rent(models.Model):
         ('Returned','Returned'),
         ('Pending','Pending')
     )
+    ref_code = models.CharField(max_length=20)
     create_time = models.DateField(auto_now_add=True)
     update_time = models.DateField(auto_now=True)
     status = models.CharField(max_length=8, choices=STATUS)
@@ -92,10 +93,45 @@ class Rent(models.Model):
     car_id = models.ForeignKey(Car, on_delete=models.DO_NOTHING)
     customer_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     promotion = models.ForeignKey(Promo, on_delete=models.DO_NOTHING, null=True)
+    payment_order = models.ForeignKey('Payment', on_delete=models.SET_NULL, null=True,blank=True)
+    ordered = models.BooleanField(default=False)
+           
 
 
+
+class Payment(models.Model):
+    
+    amount = models.ForeignKey(Rent, on_delete=models.DO_NOTHING)
+    email = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    ref = models.CharField(max_length=200)
+    verified = models.BooleanField(default=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ("-date_created",)
+
+    def __str__(self) -> str:
+        return f"{self.user.username} - {self.amount}"
+
+    def save(self, *args, **kwargs):
+        while not self.ref:
+            ref = secrets.token_urlsafe(50)
+            object_with_similar_ref = Payment.objects.filter(ref=ref).first()
+            if not object_with_similar_ref:
+                self.ref = ref
+        super().save(*args, **kwargs)
+
+    def amount_value(self):
+        return self.amount * 100
 
     
-    
-    
-
+    def verify_payment(self):
+        paystack = PayStack()
+        status, result = paystack.verify_payment(self.ref, self.amount)
+        if status:
+            self.paystack_response = result
+            if result["amount"] / 100 == self.amount:
+                self.completed = True
+            self.save()
+            return True
+        return False
