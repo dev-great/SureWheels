@@ -1,0 +1,32 @@
+<body onload="payWithPaystack()">
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+window.onload=function(){
+payWithPaystack();
+};
+function payWithPaystack(){
+var handler = PaystackPop.setup({
+key: 'pk_test_91130c972c5af7ec4b37e1a4a9428eb128d41f68',
+email:'{{Payment.user_email.email}}',
+amount:'{{Payment.amount.total_price}}',
+currency: "NGN",
+metadata: {
+custom_fields: [
+{
+display_name:'{{Payment.email.first_name}}',
+variable_name:'{{Payment.email.last_name}}',
+value: '{{Payment.pay_car.name}}',
+}
+]
+},
+callback: function(response){
+alert('success. transaction ref is ' + response.reference);
+},
+onClose: function(){
+alert('window closed');
+}
+});
+handler.openIframe();
+}
+</script>
+</body>
