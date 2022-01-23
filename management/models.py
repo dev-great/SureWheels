@@ -124,13 +124,4 @@ class Payment(models.Model):
         return self.amount * 100
 
     
-    def verify_payment(self):
-        paystack = PayStack()
-        status, result = paystack.verify_payment(self.ref, self.amount)
-        if status:
-            self.paystack_response = result
-            if result["amount"] / 100 == self.amount:
-                self.completed = True
-            self.save()
-            return True
-        return False
+
