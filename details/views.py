@@ -1,7 +1,6 @@
 
 from datetime import datetime
 from os.path import isdir
-from pypaystack import Transaction, Customer, Plan
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
