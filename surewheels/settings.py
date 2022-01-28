@@ -27,7 +27,7 @@ ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 SECRET_KEY = 'django-insecure-5x)$b4(rc)f*4)6$-x@mw)#jvb90m!@x2o(dh2+-4l=8v(-uo$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','surewheel.herokuapp.com','www.surewheel.herokuapp.com','surewheelsng.com','wwww.surewheelsng.com']
 
