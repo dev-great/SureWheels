@@ -15,6 +15,9 @@ import os
 import django_heroku
 import dj_database_url
 from django.conf.global_settings import LOGIN_URL
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,8 +51,15 @@ INSTALLED_APPS = [
     'account',
     'crispy_forms',
     'paystack',
+    'cloudinary',
 
 ]
+
+cloudinary.config( 
+  cloud_name = "video-system-great-devxy", 
+  api_key = "124395585587674", 
+  api_secret = "mXB0BAgKrOJANynlO3A4HEvWxWs" 
+)
 
 PAYSTACK_PUBLIC_KEY= "pk_live_e960c926b60d34258bc11f5ad616cbd1b516d0bd",
 PAYSTACK_SECRET_KEY= "sk_live_ed037d255313d510169957a70e947239c06abbd0",
