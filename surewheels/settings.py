@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5x)$b4(rc)f*4)6$-x@mw)#jvb90m!@x2o(dh2+-4l=8v(-uo$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['surewheel.herokuapp.com','www.surewheel.herokuapp.com','surewheelsng.com','wwww.surewheelsng.com']
 
