@@ -141,7 +141,7 @@
                             </div>
                         </div>
                         <a class="btn btn-primary px-3" href="{% url 'detail' car.id %}">₦{{ car.price | intcomma }}.00/Day</a>
-                         <a class="btn btn-secondary px-3" href="{% url 'detail' car.id %}">see details</a>
+                         <a class="btn btn-secondary px-3" href="{% url 'detail' car.id %}">{{ car.reason}}</a>
                         
                     </div>
                 </div>
