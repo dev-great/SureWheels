@@ -59,8 +59,7 @@ class Car(models.Model):
     price = models.IntegerField()
     create_time = models.DateField(auto_now_add=True)
     update_time = models.DateField(auto_now=True)
-    pic_url =  models.ImageField(upload_to='images/')
-
+    pic_url =  CloudinaryField('images/', null=True)
 
     def __str__(self):
         return self.name + " " + self.years + " ("+ self.status+")"
