@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-                <img src="/media/{{ car.pic_url }}" alt="Responsive image" style="width: 100%;" class="mt-5">
+                <img src="{{ car.pic_url.url }}" alt="Responsive image" style="width: 100%;" class="mt-5">
                 <a type="button" class="btn btn-success btn-sm" style='margin: 111px;' href="{% url 'car_dashboard' %}">back to car list</a>
         </div>
         <div class="col-6">
