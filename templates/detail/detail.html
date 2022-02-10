@@ -90,13 +90,11 @@
 
 
             
-            <form action="{% url 'booking' car.id %}" method="post">
-                {% csrf_token %}
                 <div class="col-lg-6 mt-auto">
                     <div class="card">
                         <div class="card-body">
 
-
+                            <form action="{% url 'booking' car.id %}" method="post">
                             {% csrf_token %}
                             <h4 class="card-title">Sure-Wheels booking form</h4>
                             <h6 class="card-subtitle mb-2 text-muted">for members</h6>
@@ -174,10 +172,10 @@
                                     </tr>
                                 </table>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 
