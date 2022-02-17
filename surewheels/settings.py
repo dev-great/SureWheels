@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-5x)$b4(rc)f*4)6$-x@mw)#jvb90m!@x2o(dh2+-4l=8v(-uo$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['surewheelng.herokuapp.com','www.surewheelng.herokuapp.com','surewheelsng.com','wwww.surewheelsng.com']
+ALLOWED_HOSTS = ['carrentalng.herokuapp.com','www.carrentalng.herokuapp.com','surewheelsng.com','wwww.surewheelsng.com']
 
 
 # Application definition
